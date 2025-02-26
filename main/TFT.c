@@ -1,9 +1,3 @@
-/*
- * SPDX-FileCopyrightText: 2021-2023 Espressif Systems (Shanghai) CO LTD
- *
- * SPDX-License-Identifier: CC0-1.0
- */
-
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -17,6 +11,7 @@
 #include "esp_err.h"
 #include "esp_log.h"
 #include "lvgl.h"
+#include "calls.h"
 
 #if CONFIG_EXAMPLE_LCD_CONTROLLER_ILI9341
 #include "esp_lcd_ili9341.h"
@@ -71,8 +66,8 @@ static SemaphoreHandle_t lvgl_mux = NULL;
 esp_lcd_touch_handle_t tp = NULL;
 #endif
 
-extern void example_lvgl_demo_ui(lv_disp_t *disp);
-extern void wifi_main(void);
+
+
 
 static bool example_notify_lvgl_flush_ready(esp_lcd_panel_io_handle_t panel_io, esp_lcd_panel_io_event_data_t *edata, void *user_ctx)
 {
@@ -203,10 +198,10 @@ static void example_lvgl_port_task(void *arg)
     }
 }
 
-void app_main(void)
+void lvgl_start(void)
 {
 
-    wifi_main();
+  
     static lv_disp_draw_buf_t disp_buf; // contains internal graphic buffer(s) called draw buffer(s)
     static lv_disp_drv_t disp_drv;      // contains callback functions
 
@@ -345,6 +340,7 @@ void app_main(void)
     ESP_LOGI(TAG, "Display LVGL Meter Widget");
     // Lock the mutex due to the LVGL APIs are not thread-safe
     if (example_lvgl_lock(-1)) {
+        // wifi_main();
         example_lvgl_demo_ui(disp);
         // Release the mutex
         example_lvgl_unlock();
