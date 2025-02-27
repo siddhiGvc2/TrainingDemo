@@ -130,7 +130,7 @@ void http_fota(void){
             }
             //ESP_LOGI(TAG, "read_len = %d", read_len);
             total_read_len += read_len;
-            // err = esp_ota_write(ota_handle, (const void *)data, read_len);
+            err = esp_ota_write(ota_handle, (const void *)data, read_len);
             if (err != ESP_OK) {
                 printf("Failed to write OTA data: %s\n", esp_err_to_name(err));
                 // send(sock, "*FOTA-ERROR#", strlen("*FOTA-ERROR#"), 0);
