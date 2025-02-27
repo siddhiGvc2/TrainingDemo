@@ -67,7 +67,7 @@ void http_fota(void){
 
     esp_http_client_config_t config = {
         .url = FOTA_URL,
-        // .event_handler = _http_event_handler
+        .event_handler = _http_event_handler
     };
 
     

@@ -23,4 +23,7 @@ extern void http_fota(void);
 extern void uart_write_string(const char *);
 extern void uart_write_string_ln(const char *);
 extern void RestartDevice(void);
-// extern esp_err_t _http_event_handler(esp_http_client_event_t *);
+
+#include "esp_http_client.h"
+#include "esp_https_ota.h"
+extern esp_err_t _http_event_handler(esp_http_client_event_t *);
