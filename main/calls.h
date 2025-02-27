@@ -23,6 +23,9 @@ extern void http_fota(void);
 extern void uart_write_string(const char *);
 extern void uart_write_string_ln(const char *);
 extern void RestartDevice(void);
+extern void publish_mqtt_message(const char *);
+extern void InitMqtt (void);
+extern void mqtt_app_start(void);
 
 #include "esp_http_client.h"
 #include "esp_https_ota.h"

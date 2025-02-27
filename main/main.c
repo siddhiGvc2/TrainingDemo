@@ -25,7 +25,9 @@
 void app_main(void){
     wifi_main(); 
     uart_main();
-    http_fota();
+    mqtt_app_start();
+    InitMqtt();
+    // http_fota();
 }
 
 
