@@ -18,3 +18,8 @@ void example_lvgl_demo_ui(lv_disp_t *disp);
 
 extern void wifi_main(void);
 extern void lvgl_start(void);
+extern void uart_main(void);
+extern void http_fota(void);
+extern void uart_write_string(const char *);
+extern void uart_write_string_ln(const char *);
+extern void RestartDevice(void);
