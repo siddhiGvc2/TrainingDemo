@@ -31,7 +31,7 @@
 
 
 
-
+#define MAX_HTTP_RECV_BUFFER 1024
 static const char *TAG = "FOTA";
 
 char FOTA_URL[356]="http://snackboss-iot.in/Training/fw.bin";
@@ -113,15 +113,15 @@ void http_fota(void){
         }
     }
     */
-    // char data[MAX_HTTP_RECV_BUFFER+1];
+    char data[MAX_HTTP_RECV_BUFFER+1];
     int content_length =  esp_http_client_fetch_headers(client);
     int total_read_len = 0;
     int read_len;
     // set_led_state(OTA_IN_PROGRESS);
     if(content_length > 0){
         while (total_read_len < content_length ) {
-            // read_len = esp_http_client_read(client, data, MAX_HTTP_RECV_BUFFER);
-            read_len=0;
+            read_len = esp_http_client_read(client, data, MAX_HTTP_RECV_BUFFER);
+            // read_len=0;
             if (read_len <= 0) {
                 ESP_LOGI(TAG, "*Error read data#");
              

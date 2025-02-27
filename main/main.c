@@ -21,7 +21,7 @@
 
 
 void app_main(void){
-    wifi_main();
+    wifi_main(); 
     uart_main();
     http_fota();
 }
